@@ -1,0 +1,47 @@
+{
+  "case_study": "VRO Ops",
+  "fictional": true,
+  "organization": {
+    "name": "Example Civic Records Cooperative",
+    "domain": "civic-records.example"
+  },
+  "modules": [
+    {
+      "name": "service-registry",
+      "purpose": "Describe available operational modules and their review state",
+      "authority": "local-discovery",
+      "boundary": "Does not become the external service record"
+    },
+    {
+      "name": "operator-workbench",
+      "purpose": "Coordinate bounded work items for an authenticated operator",
+      "authority": "local-work-state",
+      "boundary": "Every action rechecks role and resource ownership"
+    },
+    {
+      "name": "case-review",
+      "purpose": "Assemble a fictional review packet for human approval",
+      "authority": "draft-only",
+      "boundary": "A human remains responsible for final external submission"
+    },
+    {
+      "name": "service-adapter",
+      "purpose": "Translate an external capability into a narrow local contract",
+      "authority": "external-reference",
+      "boundary": "Provider state remains externally authoritative"
+    },
+    {
+      "name": "health-summary",
+      "purpose": "Present explicitly observed module health",
+      "authority": "observed-status",
+      "boundary": "An observation does not establish historical reliability"
+    }
+  ],
+  "invariants": [
+    "registry_entries_are_discovery_metadata_not_credentials",
+    "presentation_checks_never_replace_action_authorization",
+    "external_records_remain_external_authority",
+    "draft_generation_never_implies_external_submission",
+    "runtime_claims_require_runtime_read_back"
+  ]
+}

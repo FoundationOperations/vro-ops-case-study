@@ -1,0 +1,40 @@
+{
+  "case_study": "VRO Ops",
+  "fictional": true,
+  "tenant_domain": "civic-records.example",
+  "policy": "allow only when identity, role, and resource ownership all pass",
+  "scenarios": [
+    {
+      "name": "missing-identity",
+      "actor": "anonymous@civic-records.example",
+      "authenticated": false,
+      "role_allows_action": false,
+      "owns_resource": false,
+      "expected": "deny"
+    },
+    {
+      "name": "viewer-cannot-mutate",
+      "actor": "viewer@civic-records.example",
+      "authenticated": true,
+      "role_allows_action": false,
+      "owns_resource": true,
+      "expected": "deny"
+    },
+    {
+      "name": "operator-cannot-cross-owner-boundary",
+      "actor": "operator@civic-records.example",
+      "authenticated": true,
+      "role_allows_action": true,
+      "owns_resource": false,
+      "expected": "deny"
+    },
+    {
+      "name": "operator-can-update-owned-resource",
+      "actor": "operator@civic-records.example",
+      "authenticated": true,
+      "role_allows_action": true,
+      "owns_resource": true,
+      "expected": "allow"
+    }
+  ]
+}

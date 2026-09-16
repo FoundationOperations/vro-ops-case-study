@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           persist-credentials: false
+      - name: Install verifier dependency
+        run: sudo apt-get update && sudo apt-get install --yes ripgrep
       - name: Check verification syntax
         run: bash -n tests/verify.sh
       - name: Verify public artifacts
